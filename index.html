@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="no-referrer" />
+    <title>Arcana | Cyber Tarot</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="./styles.css?v=arcana-consultation" />
+  </head>
+  <body>
+    <main class="arcana-shell">
+      <header class="arcana-header" aria-labelledby="appTitle">
+        <p class="eyebrow">Cyber Mysticism Tarot</p>
+        <h1 id="appTitle">Arcana</h1>
+        <p class="intro">
+          凝视命运之轮，连续抽取三张牌。它们会形成一组无固定牌阵的能量线索，适用于感情、学业、事业与财运等通用问题。
+        </p>
+      </header>
+
+      <section class="status-panel" aria-live="polite">
+        <span class="status-orb" aria-hidden="true"></span>
+        <div>
+          <p class="status-label">Oracle Status</p>
+          <p id="statusText" class="status-text">正在连接塔罗数据源...</p>
+        </div>
+        <strong id="cardCount" class="count-pill">0 / 78</strong>
+      </section>
+
+      <section class="question-panel" aria-labelledby="questionLabel">
+        <label id="questionLabel" for="questionInput">你真正想问的是什么？</label>
+        <textarea
+          id="questionInput"
+          maxlength="240"
+          rows="2"
+          placeholder="写下困扰你的问题，或留空进行自由解读"
+        ></textarea>
+      </section>
+
+      <section class="wheel-stage" aria-label="命运之轮">
+        <div id="wheelLoading" class="wheel-loading">星图展开中...</div>
+
+        <div id="tarotSwiper" class="swiper arcana-swiper">
+          <div id="tarotWrapper" class="swiper-wrapper"></div>
+        </div>
+
+        <div class="wheel-focus" aria-hidden="true"></div>
+      </section>
+
+      <section id="divinationStage" class="divination-stage" aria-label="三张通用塔罗解读">
+        <div class="spread-zone" aria-label="三张通用塔罗牌">
+          <article class="spread-slot" data-slot-index="0">
+            <div class="slot-card-shell" aria-live="polite"></div>
+          </article>
+          <article class="spread-slot" data-slot-index="1">
+            <div class="slot-card-shell" aria-live="polite"></div>
+          </article>
+          <article class="spread-slot" data-slot-index="2">
+            <div class="slot-card-shell" aria-live="polite"></div>
+          </article>
+        </div>
+
+        <aside id="readingPanel" class="reading-panel" aria-live="polite" aria-hidden="true">
+          <p class="eyebrow">Oracle Report</p>
+          <h2>全局综合解读</h2>
+          <div id="readingText" class="reading-text"></div>
+          <button id="restartReadingButton" class="restart-reading-button" type="button">
+            再抽一次
+          </button>
+        </aside>
+      </section>
+    </main>
+
+    <aside id="gestureHud" class="gesture-hud" aria-label="手势操控摄像头预览">
+      <div class="camera-orb">
+        <video id="cameraPreview" autoplay muted playsinline></video>
+        <canvas id="handCanvas" aria-hidden="true"></canvas>
+      </div>
+    </aside>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+      window.ARCANA_LLM_API_URL = "/api/tarot-reading";
+    </script>
+    <script src="./app.js?v=arcana-personas-v2"></script>
+  </body>
+</html>
